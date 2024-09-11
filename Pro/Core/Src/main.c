@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "heah1.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -86,7 +86,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+  int led_sta = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -94,7 +94,21 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  switch (led_sta) {
+	  case 1:
+		  HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, SET);
+		  HAL_GPIO_WritePin(Led_Yel_GPIO_Port, Led_Yel_Pin, RESET);
+		  led_sta = 0;
+		  break;
+	  case 0:
+		  HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, RESET);
+		  HAL_GPIO_WritePin(Led_Yel_GPIO_Port, Led_Yel_Pin, SET);
+		  led_sta = 1;
+		  break;
+	  //default:
+		  //
+	  }
+	  HAL_Delay(2000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -148,10 +162,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, Led_Red_Pin|Led_Yel_Pin|Led_Gree_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, Led_Red_Pin|Led_Yel_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : Led_Red_Pin Led_Yel_Pin Led_Gree_Pin */
-  GPIO_InitStruct.Pin = Led_Red_Pin|Led_Yel_Pin|Led_Gree_Pin;
+  /*Configure GPIO pins : Led_Red_Pin Led_Yel_Pin */
+  GPIO_InitStruct.Pin = Led_Red_Pin|Led_Yel_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
