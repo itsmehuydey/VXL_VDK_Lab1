@@ -144,8 +144,8 @@ int main(void)
  800018c:	2120      	movs	r1, #32
  800018e:	4825      	ldr	r0, [pc, #148]	; (8000224 <main+0xd8>)
  8000190:	f000 fc28 	bl	80009e4 <HAL_GPIO_WritePin>
-              HAL_GPIO_WritePin(Led_Yel_GPIO_Port, Led_Yel_Pin, RESET);      // Tắt LED vàng
- 8000194:	2200      	movs	r2, #0
+              HAL_GPIO_WritePin(Led_Yel_GPIO_Port, Led_Yel_Pin, SET);      // Tắt LED vàng
+ 8000194:	2201      	movs	r2, #1
  8000196:	2140      	movs	r1, #64	; 0x40
  8000198:	4822      	ldr	r0, [pc, #136]	; (8000224 <main+0xd8>)
  800019a:	f000 fc23 	bl	80009e4 <HAL_GPIO_WritePin>
@@ -174,8 +174,8 @@ int main(void)
  80001ba:	2140      	movs	r1, #64	; 0x40
  80001bc:	4819      	ldr	r0, [pc, #100]	; (8000224 <main+0xd8>)
  80001be:	f000 fc11 	bl	80009e4 <HAL_GPIO_WritePin>
-              HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, RESET);  // Tắt LED xanh
- 80001c2:	2200      	movs	r2, #0
+              HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, SET);  // Tắt LED xanh
+ 80001c2:	2201      	movs	r2, #1
  80001c4:	2180      	movs	r1, #128	; 0x80
  80001c6:	4817      	ldr	r0, [pc, #92]	; (8000224 <main+0xd8>)
  80001c8:	f000 fc0c 	bl	80009e4 <HAL_GPIO_WritePin>
@@ -204,8 +204,8 @@ int main(void)
  80001e8:	2140      	movs	r1, #64	; 0x40
  80001ea:	480e      	ldr	r0, [pc, #56]	; (8000224 <main+0xd8>)
  80001ec:	f000 fbfa 	bl	80009e4 <HAL_GPIO_WritePin>
-              HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, SET);    // Bật LED xanh
- 80001f0:	2201      	movs	r2, #1
+              HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, RESET);    // Bật LED xanh
+ 80001f0:	2200      	movs	r2, #0
  80001f2:	2180      	movs	r1, #128	; 0x80
  80001f4:	480b      	ldr	r0, [pc, #44]	; (8000224 <main+0xd8>)
  80001f6:	f000 fbf5 	bl	80009e4 <HAL_GPIO_WritePin>
