@@ -54,7 +54,13 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int n_sec = 0;
+int n_min = 0;
+int n_hour = 6;
 
+int c_sec = 2;
+int c_blink_min = 10;
+int sw_min = 0;
 /* USER CODE END 0 */
 
 /**
@@ -86,126 +92,184 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+  void clearAllClock()
+  {
+  	HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, RESET);
+  	HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, RESET);
+  	HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, RESET);
+  	HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, RESET);
+  	HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, RESET);
+  	HAL_GPIO_WritePin(LED6_GPIO_Port, LED6_Pin, RESET);
+  	HAL_GPIO_WritePin(LED7_GPIO_Port, LED7_Pin, RESET);
+  	HAL_GPIO_WritePin(LED8_GPIO_Port, LED8_Pin, RESET);
+  	HAL_GPIO_WritePin(LED9_GPIO_Port, LED9_Pin, RESET);
+  	HAL_GPIO_WritePin(LED10_GPIO_Port, LED10_Pin, RESET);
+  	HAL_GPIO_WritePin(LED11_GPIO_Port, LED11_Pin, RESET);
+  	HAL_GPIO_WritePin(LED12_GPIO_Port, LED12_Pin, RESET);
+  }
 
-  void clearAllClock() {
-      // Tắt tất cả các đèn
-      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_All, RESET);
-//      HAL_GPIO_WritePin(c2_GPIO_Port, c2_Pin, RESET);
-//      HAL_GPIO_WritePin(c3_GPIO_Port, c3_Pin, RESET);
-//      HAL_GPIO_WritePin(c4_GPIO_Port, c4_Pin, RESET);
-//      HAL_GPIO_WritePin(c5_GPIO_Port, c5_Pin, RESET);
-//      HAL_GPIO_WritePin(c6_GPIO_Port, c6_Pin, RESET);
-//      HAL_GPIO_WritePin(c7_GPIO_Port, c7_Pin, RESET);
-//      HAL_GPIO_WritePin(c8_GPIO_Port, c8_Pin, RESET);
-//      HAL_GPIO_WritePin(c9_GPIO_Port, c9_Pin, RESET);
-//      HAL_GPIO_WritePin(c10_GPIO_Port, c10_Pin, RESET);
-//      HAL_GPIO_WritePin(c11_GPIO_Port, c11_Pin, RESET);
-//      HAL_GPIO_WritePin(c12_GPIO_Port, c12_Pin, RESET);
-  }
-  void setNumberOnClock(int num) {
+  void setNumberOnClock(int num)
+  {
 	  clearAllClock();
-      switch (num) {
-          case 1:
-              HAL_GPIO_WritePin(c1_GPIO_Port, c1_Pin, SET);  // Bật đèn C1
-              break;
-          case 2:
-              HAL_GPIO_WritePin(c2_GPIO_Port, c2_Pin, SET);  // Bật đèn C2
-              break;
-          case 3:
-              HAL_GPIO_WritePin(c3_GPIO_Port, c3_Pin, SET);  // Bật đèn C3
-              break;
-          case 4:
-              HAL_GPIO_WritePin(c4_GPIO_Port, c4_Pin, SET);  // Bật đèn C4
-              break;
-          case 5:
-              HAL_GPIO_WritePin(c5_GPIO_Port, c5_Pin, SET);  // Bật đèn C5
-              break;
-          case 6:
-              HAL_GPIO_WritePin(c6_GPIO_Port, c6_Pin, SET);  // Bật đèn C6
-              break;
-          case 7:
-              HAL_GPIO_WritePin(c7_GPIO_Port, c7_Pin, SET);  // Bật đèn C7
-              break;
-          case 8:
-              HAL_GPIO_WritePin(c8_GPIO_Port, c8_Pin, SET);  // Bật đèn C8
-              break;
-          case 9:
-              HAL_GPIO_WritePin(c9_GPIO_Port, c9_Pin, SET);  // Bật đèn C9
-              break;
-          case 10:
-              HAL_GPIO_WritePin(c10_GPIO_Port, c10_Pin, SET);  // Bật đèn C10
-              break;
-          case 11:
-              HAL_GPIO_WritePin(c11_GPIO_Port, c11_Pin, SET);  // Bật đèn C11
-              break;
-          case 12:
-              HAL_GPIO_WritePin(c12_GPIO_Port, c12_Pin, SET);  // Bật đèn C12
-              break;
-          default:
-              // Nếu số không hợp lệ, không làm gì
-              break;
-      }
+  	switch(num)
+  	{
+  		case 0:
+  			HAL_GPIO_WritePin(LED12_GPIO_Port, LED12_Pin, SET);
+  			break;
+  		case 1:
+  			HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, SET);
+  			break;
+  		case 2:
+  			HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, SET);
+  			break;
+  		case 3:
+  			HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, SET);
+  			break;
+  		case 4:
+  			HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, SET);
+  			break;
+  		case 5:
+  			HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, SET);
+  			break;
+  		case 6:
+  			HAL_GPIO_WritePin(LED6_GPIO_Port, LED6_Pin, SET);
+  			break;
+  		case 7:
+  			HAL_GPIO_WritePin(LED7_GPIO_Port, LED7_Pin, SET);
+  			break;
+  		case 8:
+  			HAL_GPIO_WritePin(LED8_GPIO_Port, LED8_Pin, SET);
+  			break;
+  		case 9:
+  			HAL_GPIO_WritePin(LED9_GPIO_Port, LED9_Pin, SET);
+  			break;
+  		case 10:
+  			HAL_GPIO_WritePin(LED10_GPIO_Port, LED10_Pin, SET);
+  			break;
+  		case 11:
+  			HAL_GPIO_WritePin(LED11_GPIO_Port, LED11_Pin, SET);
+  			break;
+  	}
   }
-  void clearNumberOnClock(int num){
-	  switch (num) {
-	            case 1:
-	                HAL_GPIO_WritePin(c1_GPIO_Port, c1_Pin, RESET);  // Bật đèn C1
-	                break;
-	            case 2:
-	                HAL_GPIO_WritePin(c2_GPIO_Port, c2_Pin, RESET);  // Bật đèn C2
-	                break;
-	            case 3:
-	                HAL_GPIO_WritePin(c3_GPIO_Port, c3_Pin, RESET);  // Bật đèn C3
-	                break;
-	            case 4:
-	                HAL_GPIO_WritePin(c4_GPIO_Port, c4_Pin, RESET);  // Bật đèn C4
-	                break;
-	            case 5:
-	                HAL_GPIO_WritePin(c5_GPIO_Port, c5_Pin, RESET);  // Bật đèn C5
-	                break;
-	            case 6:
-	                HAL_GPIO_WritePin(c6_GPIO_Port, c6_Pin, RESET);  // Bật đèn C6
-	                break;
-	            case 7:
-	                HAL_GPIO_WritePin(c7_GPIO_Port, c7_Pin, RESET);  // Bật đèn C7
-	                break;
-	            case 8:
-	                HAL_GPIO_WritePin(c8_GPIO_Port, c8_Pin, RESET);  // Bật đèn C8
-	                break;
-	            case 9:
-	                HAL_GPIO_WritePin(c9_GPIO_Port, c9_Pin, RESET);  // Bật đèn C9
-	                break;
-	            case 10:
-	                HAL_GPIO_WritePin(c10_GPIO_Port, c10_Pin, RESET);  // Bật đèn C10
-	                break;
-	            case 11:
-	                HAL_GPIO_WritePin(c11_GPIO_Port, c11_Pin, RESET);  // Bật đèn C11
-	                break;
-	            case 12:
-	                HAL_GPIO_WritePin(c12_GPIO_Port, c12_Pin, RESET);  // Bật đèn C12
-	                break;
-	            default:
-	                // Nếu số không hợp lệ, không làm gì
-	                break;
-	        }
+
+  void clearNumberOnClock(int num)
+  {
+  	switch(num)
+  	{
+  		case 0:
+  			HAL_GPIO_WritePin(LED12_GPIO_Port, LED12_Pin, RESET);
+  			break;
+  		case 1:
+  			HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, RESET);
+  			break;
+  		case 2:
+  			HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, RESET);
+  			break;
+  		case 3:
+  			HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, RESET);
+  			break;
+  		case 4:
+  			HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, RESET);
+  			break;
+  		case 5:
+  			HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, RESET);
+  			break;
+  		case 6:
+  			HAL_GPIO_WritePin(LED6_GPIO_Port, LED6_Pin, RESET);
+  			break;
+  		case 7:
+  			HAL_GPIO_WritePin(LED7_GPIO_Port, LED7_Pin, RESET);
+  			break;
+  		case 8:
+  			HAL_GPIO_WritePin(LED8_GPIO_Port, LED8_Pin, RESET);
+  			break;
+  		case 9:
+  			HAL_GPIO_WritePin(LED9_GPIO_Port, LED9_Pin, RESET);
+  			break;
+  		case 10:
+  			HAL_GPIO_WritePin(LED10_GPIO_Port, LED10_Pin, RESET);
+  			break;
+  		case 11:
+  			HAL_GPIO_WritePin(LED11_GPIO_Port, LED11_Pin, RESET);
+  			break;
+  	}
   }
-  int second = 0;
-  //todu
-		  //, minute = 0, hour = 0;
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
-  {
-    /* USER CODE END WHILE */
-	  	   if( second >= 12) second = 0;
-	  	   setNumberOnClock(++second);
-	  	   HAL_Delay (500) ;
+    {
+  	  if (n_sec >= 60)
+  	  {
+  		  n_sec = 0;
+  		  n_min++;
+  		  if (n_min >= 60)
+  		  {
+  			  n_min = 0;
+  			  clearNumberOnClock(n_hour);
+  			  n_hour++;
+  			  if (n_hour >= 12)
+  			  {
+  				  n_hour = 0;
+  			  }
+  		  }
+  	  }
+  	  if (c_sec <= 0)
+  	  {
+  		  n_sec++;
+  		  c_sec = 2;
+  	  }
+
+  	  if (n_sec % 5 == 0)
+  	  {
+  		  if (n_sec / 5 == 0) clearNumberOnClock(11);
+  		  else clearNumberOnClock(n_sec / 5 - 1);
+  		  setNumberOnClock(n_sec / 5);
+  	  }
+
+  	  setNumberOnClock(n_hour);
+
+  	  if (c_blink_min <= 0)
+  	  {
+  		  switch (sw_min)
+  		  {
+  		  	  case 0:
+  		  		  setNumberOnClock(n_min / 5);
+  		  		  sw_min = 1;
+  		  		  break;
+  		  	  case 1:
+  				  clearNumberOnClock(n_min / 5);
+  				  sw_min = 0;
+  				  break;
+  		  }
+  		  c_blink_min = 10;
+  	  }
+
+  	  c_blink_min--;
+  	  c_sec--;
+
+  	  HAL_Delay(10);
+      /* USER CODE END WHILE */
+
+      /* USER CODE BEGIN 3 */
+    }
+    /* USER CODE END 3 */
+  }
+//	  	   if(hour>=24){
+//	  		   hour=0;
+//	  	   }
+//	  	   if (hour % 5 == 0) {
+//               if (cnt3 >= 12) {
+//                   cnt3 = 0;
+//            }
+//               setNumberOnClock(++cnt3);
+//           }
+
     /* USER CODE BEGIN 3 */
   /* USER CODE END 3 */
-}
-}
 
 /**
   * @brief System Clock Configuration
@@ -255,16 +319,16 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, c1_Pin|c2_Pin|c3_Pin|c4_Pin
-                          |c5_Pin|c6_Pin|c7_Pin|c8_Pin
-                          |c9_Pin|c10_Pin|c11_Pin|c12_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, LED1_Pin|LED2_Pin|LED3_Pin|LED4_Pin
+                          |LED5_Pin|LED6_Pin|LED7_Pin|LED8_Pin
+                          |LED9_Pin|LED10_Pin|LED11_Pin|LED12_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : c1_Pin c2_Pin c3_Pin c4_Pin
-                           c5_Pin c6_Pin c7_Pin c8_Pin
-                           c9_Pin c10_Pin c11_Pin c12_Pin */
-  GPIO_InitStruct.Pin = c1_Pin|c2_Pin|c3_Pin|c4_Pin
-                          |c5_Pin|c6_Pin|c7_Pin|c8_Pin
-                          |c9_Pin|c10_Pin|c11_Pin|c12_Pin;
+  /*Configure GPIO pins : LED1_Pin LED2_Pin LED3_Pin LED4_Pin
+                           LED5_Pin LED6_Pin LED7_Pin LED8_Pin
+                           LED9_Pin LED10_Pin LED11_Pin LED12_Pin */
+  GPIO_InitStruct.Pin = LED1_Pin|LED2_Pin|LED3_Pin|LED4_Pin
+                          |LED5_Pin|LED6_Pin|LED7_Pin|LED8_Pin
+                          |LED9_Pin|LED10_Pin|LED11_Pin|LED12_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
