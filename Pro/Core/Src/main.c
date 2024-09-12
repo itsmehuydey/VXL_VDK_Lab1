@@ -95,98 +95,11 @@ int counter =4;
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  // Hiển thị số và giảm bộ đếm
-	     // Điều khiển trạng thái của led_sta
-	     switch (led_sta) {
-	         case 5:
-	             HAL_GPIO_WritePin(led1_GPIO_Port, led1_Pin, SET);
-	             HAL_GPIO_WritePin(led2_GPIO_Port, led2_Pin, RESET);
-	             HAL_GPIO_WritePin(led3_GPIO_Port, led3_Pin, RESET);
-	             HAL_GPIO_WritePin(led7_GPIO_Port, led7_Pin, SET);
-	             HAL_GPIO_WritePin(led8_GPIO_Port, led8_Pin, RESET);
-	             HAL_GPIO_WritePin(led9_GPIO_Port, led9_Pin, RESET);
-	             if (cnt <= 0) {
-	                 led_sta = 3;
-	                 cnt = 3;  // Chuyển sang trạng thái 3
-	             }
-	             break;
+    /* USER CODE END WHILE */
 
-	         case 2:
-	             HAL_GPIO_WritePin(led1_GPIO_Port, led1_Pin, RESET);
-	             HAL_GPIO_WritePin(led2_GPIO_Port, led2_Pin, SET);
-	             HAL_GPIO_WritePin(led3_GPIO_Port, led3_Pin, RESET);
-	             HAL_GPIO_WritePin(led7_GPIO_Port, led7_Pin, RESET);
-	             HAL_GPIO_WritePin(led8_GPIO_Port, led8_Pin, SET);
-	             HAL_GPIO_WritePin(led9_GPIO_Port, led9_Pin, RESET);
-	             if (cnt <= 0) {
-	                 led_sta = 5;
-	                 cnt = 5;  // Quay lại trạng thái 5
-	             }
-	             break;
-
-	         case 3:
-	             HAL_GPIO_WritePin(led1_GPIO_Port, led1_Pin, RESET);
-	             HAL_GPIO_WritePin(led2_GPIO_Port, led2_Pin, RESET);
-	             HAL_GPIO_WritePin(led3_GPIO_Port, led3_Pin, SET);
-	             HAL_GPIO_WritePin(led7_GPIO_Port, led7_Pin, RESET);
-	             HAL_GPIO_WritePin(led8_GPIO_Port, led8_Pin, RESET);
-	             HAL_GPIO_WritePin(led9_GPIO_Port, led9_Pin, SET);
-	             if (cnt <= 0) {
-	                 led_sta = 2;
-	                 cnt = 2;  // Chuyển sang trạng thái 2
-	             }
-	             break;
-	     }
-
-	     // Điều khiển trạng thái của led_sta2
-	     switch (led_sta2) {
-	         case 5:
-	             HAL_GPIO_WritePin(led4_GPIO_Port, led4_Pin, SET);
-	             HAL_GPIO_WritePin(led5_GPIO_Port, led5_Pin, RESET);
-	             HAL_GPIO_WritePin(led6_GPIO_Port, led6_Pin, RESET);
-	             HAL_GPIO_WritePin(led10_GPIO_Port, led10_Pin, SET);
-	             HAL_GPIO_WritePin(led11_GPIO_Port, led11_Pin, RESET);
-	             HAL_GPIO_WritePin(led12_GPIO_Port, led12_Pin, RESET);
-	             if (cnt2 <= 0) {
-	                 led_sta2 = 3;
-	                 cnt2 = 3;  // Chuyển sang trạng thái 3
-	             }
-	             break;
-
-	         case 2:
-	             HAL_GPIO_WritePin(led4_GPIO_Port, led4_Pin, RESET);
-	             HAL_GPIO_WritePin(led5_GPIO_Port, led5_Pin, SET);
-	             HAL_GPIO_WritePin(led6_GPIO_Port, led6_Pin, RESET);
-	             HAL_GPIO_WritePin(led10_GPIO_Port, led10_Pin, RESET);
-	             HAL_GPIO_WritePin(led11_GPIO_Port, led11_Pin, SET);
-	             HAL_GPIO_WritePin(led12_GPIO_Port, led12_Pin, RESET);
-	             if (cnt2 <= 0) {
-	                 led_sta2 = 5;
-	                 cnt2 = 5;  // Quay lại trạng thái 5
-	             }
-	             break;
-
-	         case 3:
-	             HAL_GPIO_WritePin(led4_GPIO_Port, led4_Pin, RESET);
-	             HAL_GPIO_WritePin(led5_GPIO_Port, led5_Pin, RESET);
-	             HAL_GPIO_WritePin(led6_GPIO_Port, led6_Pin, SET);
-	             HAL_GPIO_WritePin(led10_GPIO_Port, led10_Pin, RESET);
-	             HAL_GPIO_WritePin(led11_GPIO_Port, led11_Pin, RESET);
-	             HAL_GPIO_WritePin(led12_GPIO_Port, led12_Pin, SET);
-	             if (cnt2 <= 0) {
-	                 led_sta2 = 2;
-	                 cnt2 = 2;  // Chuyển sang trạng thái 2
-	             }
-	             break;
-	     }
-	     //HAL_Delay(500);
-	     // Giảm bộ đếm và delay
-	     if (counter < 0) counter = 4;
-	   	     display7SEG(counter--);
-	     HAL_Delay(1000);
-	     cnt--;
-	     cnt2--;
-	 }
+    /* USER CODE BEGIN 3 */
+  }
+  /* USER CODE END 3 */
 }
 
 /**
@@ -243,9 +156,9 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, led1_Pin|led2_Pin|led3_Pin|led11_Pin
-                          |led12_Pin|seg6_Pin|seg7_Pin|led4_Pin
-                          |led5_Pin|led6_Pin|led7_Pin|led8_Pin
-                          |led9_Pin|led10_Pin, GPIO_PIN_RESET);
+                          |led12_Pin|seg6_Pin|seg7_Pin|GPIO_PIN_15
+                          |led4_Pin|led5_Pin|led6_Pin|led7_Pin
+                          |led8_Pin|led9_Pin|led10_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : Led_Red_Pin Led_Yel_Pin Led_Green_Pin seg1_Pin
                            seg2_Pin seg3_Pin seg4_Pin seg5_Pin */
@@ -257,13 +170,13 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : led1_Pin led2_Pin led3_Pin led11_Pin
-                           led12_Pin seg6_Pin seg7_Pin led4_Pin
-                           led5_Pin led6_Pin led7_Pin led8_Pin
-                           led9_Pin led10_Pin */
+                           led12_Pin seg6_Pin seg7_Pin PB15
+                           led4_Pin led5_Pin led6_Pin led7_Pin
+                           led8_Pin led9_Pin led10_Pin */
   GPIO_InitStruct.Pin = led1_Pin|led2_Pin|led3_Pin|led11_Pin
-                          |led12_Pin|seg6_Pin|seg7_Pin|led4_Pin
-                          |led5_Pin|led6_Pin|led7_Pin|led8_Pin
-                          |led9_Pin|led10_Pin;
+                          |led12_Pin|seg6_Pin|seg7_Pin|GPIO_PIN_15
+                          |led4_Pin|led5_Pin|led6_Pin|led7_Pin
+                          |led8_Pin|led9_Pin|led10_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
