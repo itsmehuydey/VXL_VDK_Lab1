@@ -1,6 +1,6 @@
-bai6.h:38:6:setNumberOnClock	16	static
-bai6.h:80:6:lightUpAllClockSequentially	16	static
+main.c:90:8:clearAllClock	16	static
 main.c:64:5:main	16	static
-main.c:113:6:SystemClock_Config	72	static
-main.c:149:13:MX_GPIO_Init	32	static
-main.c:193:6:Error_Handler	4	static,ignoring_inline_asm
+main.c:105:8:setNumberOnClock	16	static
+main.c:213:6:SystemClock_Config	72	static
+main.c:249:13:MX_GPIO_Init	32	static
+main.c:282:6:Error_Handler	4	static,ignoring_inline_asm
