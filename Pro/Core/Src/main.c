@@ -86,7 +86,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -94,7 +93,14 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  setNumberOnClock;
+	  int counter = 0;
+	   while (1) {
+	   if( counter >= 12) counter = 0;
+	   setNumberOnClock(counter++) ;
+	   HAL_Delay (1000) ;
+
+	   }
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
