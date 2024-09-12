@@ -190,6 +190,7 @@ int main(void)
 	        }
   }
   int second = 0;
+  //todu
 		  //, minute = 0, hour = 0;
   /* USER CODE END 2 */
 
