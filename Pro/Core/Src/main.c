@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "bai4.h"
+#include "bai6.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,17 +94,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  if(s >= 60){
-		  s=0;
-		  m++;
-	  }
-	  if(m>=60){
-		  m=0;
-		  h++;
-	  }
-	  if(h>=12){
-		  h=0
-	  }
+	  setNumberOnClock;
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -160,18 +150,18 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, c1_Pin|c2_Pin|c3_Pin|c4_Pin
-                          |c5_Pin|c7_Pin|c8_Pin|c9_Pin
-                          |c10_Pin, GPIO_PIN_RESET);
+                          |c5_Pin|c6_Pin|c7_Pin|c8_Pin
+                          |c9_Pin|c10_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, c11_Pin|c12_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : c1_Pin c2_Pin c3_Pin c4_Pin
-                           c5_Pin c7_Pin c8_Pin c9_Pin
-                           c10_Pin */
+                           c5_Pin c6_Pin c7_Pin c8_Pin
+                           c9_Pin c10_Pin */
   GPIO_InitStruct.Pin = c1_Pin|c2_Pin|c3_Pin|c4_Pin
-                          |c5_Pin|c7_Pin|c8_Pin|c9_Pin
-                          |c10_Pin;
+                          |c5_Pin|c6_Pin|c7_Pin|c8_Pin
+                          |c9_Pin|c10_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

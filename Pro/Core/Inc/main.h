@@ -72,13 +72,15 @@ void Error_Handler(void);
 #define c12_GPIO_Port GPIOB
 #define c5_Pin GPIO_PIN_8
 #define c5_GPIO_Port GPIOA
-#define c7_Pin GPIO_PIN_9
+#define c6_Pin GPIO_PIN_9
+#define c6_GPIO_Port GPIOA
+#define c7_Pin GPIO_PIN_10
 #define c7_GPIO_Port GPIOA
-#define c8_Pin GPIO_PIN_10
+#define c8_Pin GPIO_PIN_11
 #define c8_GPIO_Port GPIOA
-#define c9_Pin GPIO_PIN_11
+#define c9_Pin GPIO_PIN_12
 #define c9_GPIO_Port GPIOA
-#define c10_Pin GPIO_PIN_12
+#define c10_Pin GPIO_PIN_13
 #define c10_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
