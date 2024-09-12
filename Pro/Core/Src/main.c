@@ -95,10 +95,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  int counter = 0;
+	  int counter = 5;
 	   while (1) {
-	   if( counter >= 10) counter = 0;
-	   display7SEG ( counter ++) ;
+	   if( counter < 0) counter = 5;
+	   display7SEG ( counter --) ;
 	   HAL_Delay (1000) ;
 
 	   }
