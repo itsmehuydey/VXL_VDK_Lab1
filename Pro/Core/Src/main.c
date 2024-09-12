@@ -151,32 +151,26 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, Led_Red_Pin|Led_Yel_Pin|Led_Green_Pin|seg1_Pin
-                          |seg2_Pin|seg3_Pin|seg4_Pin|seg5_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, c1_Pin|c2_Pin|c3_Pin|c4_Pin
+                          |c5_Pin|c7_Pin|c8_Pin|c9_Pin
+                          |c10_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, led1_Pin|led2_Pin|led3_Pin|led11_Pin
-                          |led12_Pin|seg6_Pin|seg7_Pin|GPIO_PIN_15
-                          |led4_Pin|led5_Pin|led6_Pin|led7_Pin
-                          |led8_Pin|led9_Pin|led10_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, c11_Pin|c12_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : Led_Red_Pin Led_Yel_Pin Led_Green_Pin seg1_Pin
-                           seg2_Pin seg3_Pin seg4_Pin seg5_Pin */
-  GPIO_InitStruct.Pin = Led_Red_Pin|Led_Yel_Pin|Led_Green_Pin|seg1_Pin
-                          |seg2_Pin|seg3_Pin|seg4_Pin|seg5_Pin;
+  /*Configure GPIO pins : c1_Pin c2_Pin c3_Pin c4_Pin
+                           c5_Pin c7_Pin c8_Pin c9_Pin
+                           c10_Pin */
+  GPIO_InitStruct.Pin = c1_Pin|c2_Pin|c3_Pin|c4_Pin
+                          |c5_Pin|c7_Pin|c8_Pin|c9_Pin
+                          |c10_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : led1_Pin led2_Pin led3_Pin led11_Pin
-                           led12_Pin seg6_Pin seg7_Pin PB15
-                           led4_Pin led5_Pin led6_Pin led7_Pin
-                           led8_Pin led9_Pin led10_Pin */
-  GPIO_InitStruct.Pin = led1_Pin|led2_Pin|led3_Pin|led11_Pin
-                          |led12_Pin|seg6_Pin|seg7_Pin|GPIO_PIN_15
-                          |led4_Pin|led5_Pin|led6_Pin|led7_Pin
-                          |led8_Pin|led9_Pin|led10_Pin;
+  /*Configure GPIO pins : c11_Pin c12_Pin */
+  GPIO_InitStruct.Pin = c11_Pin|c12_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
