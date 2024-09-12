@@ -86,9 +86,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-int led_sta = 5, led_sta2 = 3;
-int cnt =5, cnt2 =3;
-int counter =4;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -96,7 +94,17 @@ int counter =4;
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  if(s >= 60){
+		  s=0;
+		  m++;
+	  }
+	  if(m>=60){
+		  m=0;
+		  h++;
+	  }
+	  if(h>=12){
+		  h=0
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
