@@ -37,11 +37,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00015560  00000000  00000000  000245b8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00004559  00000000  00000000  00039b18  2**0
+ 17 .debug_line   00004558  00000000  00000000  00039b18  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00079866  00000000  00000000  0003e071  2**0
+ 18 .debug_str    00079866  00000000  00000000  0003e070  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000b78d7  2**0
+ 19 .comment      00000053  00000000  00000000  000b78d6  2**0
                   CONTENTS, READONLY
  20 .debug_frame  00000d30  00000000  00000000  000b792c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -134,13 +134,13 @@ int main(void)
  800017c:	d02e      	beq.n	80001dc <main+0x90>
  800017e:	e049      	b.n	8000214 <main+0xc8>
           case 5:  // Đèn đỏ
-              HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, RESET);  // Tắt LED xanh
- 8000180:	2200      	movs	r2, #0
+              HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, SET);  // Tắt LED xanh
+ 8000180:	2201      	movs	r2, #1
  8000182:	2180      	movs	r1, #128	; 0x80
  8000184:	4827      	ldr	r0, [pc, #156]	; (8000224 <main+0xd8>)
  8000186:	f000 fc2d 	bl	80009e4 <HAL_GPIO_WritePin>
-              HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, SET);        // Bật LED đỏ
- 800018a:	2201      	movs	r2, #1
+              HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, RESET);        // Bật LED đỏ
+ 800018a:	2200      	movs	r2, #0
  800018c:	2120      	movs	r1, #32
  800018e:	4825      	ldr	r0, [pc, #148]	; (8000224 <main+0xd8>)
  8000190:	f000 fc28 	bl	80009e4 <HAL_GPIO_WritePin>
@@ -149,40 +149,41 @@ int main(void)
  8000196:	2140      	movs	r1, #64	; 0x40
  8000198:	4822      	ldr	r0, [pc, #136]	; (8000224 <main+0xd8>)
  800019a:	f000 fc23 	bl	80009e4 <HAL_GPIO_WritePin>
-              if (cnt == 0) {  // Sau 5 giây
+              if (cnt <= 0) {  // Sau 5 giây
  800019e:	683b      	ldr	r3, [r7, #0]
  80001a0:	2b00      	cmp	r3, #0
- 80001a2:	d132      	bne.n	800020a <main+0xbe>
+ 80001a2:	dc32      	bgt.n	800020a <main+0xbe>
                   led_sta = 2;  // Chuyển sang đèn vàng
  80001a4:	2302      	movs	r3, #2
  80001a6:	607b      	str	r3, [r7, #4]
-                  cnt = 2;      // Reset biến đếm
+                  cnt = 2;      // Reset biến đế
  80001a8:	2302      	movs	r3, #2
  80001aa:	603b      	str	r3, [r7, #0]
               }
               break;
  80001ac:	e02d      	b.n	800020a <main+0xbe>
 
+
           case 2:  // Đèn vàng
-              HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, RESET);      // Tắt LED đỏ
- 80001ae:	2200      	movs	r2, #0
+              HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, SET);      // Tắt LED đỏ
+ 80001ae:	2201      	movs	r2, #1
  80001b0:	2120      	movs	r1, #32
  80001b2:	481c      	ldr	r0, [pc, #112]	; (8000224 <main+0xd8>)
  80001b4:	f000 fc16 	bl	80009e4 <HAL_GPIO_WritePin>
-              HAL_GPIO_WritePin(Led_Yel_GPIO_Port, Led_Yel_Pin, SET);        // Bật LED vàng
- 80001b8:	2201      	movs	r2, #1
+              HAL_GPIO_WritePin(Led_Yel_GPIO_Port, Led_Yel_Pin, RESET);        // Bật LED vàng
+ 80001b8:	2200      	movs	r2, #0
  80001ba:	2140      	movs	r1, #64	; 0x40
  80001bc:	4819      	ldr	r0, [pc, #100]	; (8000224 <main+0xd8>)
  80001be:	f000 fc11 	bl	80009e4 <HAL_GPIO_WritePin>
-              HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, SET);  // Tắt LED xanh
+              HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, SET);  // Tắt
  80001c2:	2201      	movs	r2, #1
  80001c4:	2180      	movs	r1, #128	; 0x80
  80001c6:	4817      	ldr	r0, [pc, #92]	; (8000224 <main+0xd8>)
  80001c8:	f000 fc0c 	bl	80009e4 <HAL_GPIO_WritePin>
-              if (cnt == 0) {  // Sau 2 giây
+              if (cnt <= 0) {  // Sau 2 giây
  80001cc:	683b      	ldr	r3, [r7, #0]
  80001ce:	2b00      	cmp	r3, #0
- 80001d0:	d11d      	bne.n	800020e <main+0xc2>
+ 80001d0:	dc1d      	bgt.n	800020e <main+0xc2>
                   led_sta = 3;  // Chuyển sang đèn xanh
  80001d2:	2303      	movs	r3, #3
  80001d4:	607b      	str	r3, [r7, #4]
@@ -194,27 +195,26 @@ int main(void)
  80001da:	e018      	b.n	800020e <main+0xc2>
 
           case 3:  // Đèn xanh
-              HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, RESET);      // Tắt LED đỏ
- 80001dc:	2200      	movs	r2, #0
+              HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, SET);
+ 80001dc:	2201      	movs	r2, #1
  80001de:	2120      	movs	r1, #32
  80001e0:	4810      	ldr	r0, [pc, #64]	; (8000224 <main+0xd8>)
  80001e2:	f000 fbff 	bl	80009e4 <HAL_GPIO_WritePin>
-              HAL_GPIO_WritePin(Led_Yel_GPIO_Port, Led_Yel_Pin, RESET);      // Tắt LED vàng
- 80001e6:	2200      	movs	r2, #0
+              HAL_GPIO_WritePin(Led_Yel_GPIO_Port, Led_Yel_Pin, SET);
+ 80001e6:	2201      	movs	r2, #1
  80001e8:	2140      	movs	r1, #64	; 0x40
  80001ea:	480e      	ldr	r0, [pc, #56]	; (8000224 <main+0xd8>)
  80001ec:	f000 fbfa 	bl	80009e4 <HAL_GPIO_WritePin>
-              HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, RESET);    // Bật LED xanh
+              HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, RESET);
  80001f0:	2200      	movs	r2, #0
  80001f2:	2180      	movs	r1, #128	; 0x80
  80001f4:	480b      	ldr	r0, [pc, #44]	; (8000224 <main+0xd8>)
  80001f6:	f000 fbf5 	bl	80009e4 <HAL_GPIO_WritePin>
-              if (cnt == 0) {  // Sau 3 giây
+              if (cnt <= 0) {
  80001fa:	683b      	ldr	r3, [r7, #0]
  80001fc:	2b00      	cmp	r3, #0
- 80001fe:	d108      	bne.n	8000212 <main+0xc6>
-                    // Quay lại đèn đỏ
-                  cnt = 5;      // Reset biến đếm
+ 80001fe:	dc08      	bgt.n	8000212 <main+0xc6>
+                  cnt = 5;
  8000200:	2305      	movs	r3, #5
  8000202:	603b      	str	r3, [r7, #0]
                   led_sta = 5;
@@ -232,13 +232,12 @@ int main(void)
               break;
  8000212:	bf00      	nop
 
-          //default:  // Trường hợp mặc định (nếu có lỗi)
+          //default:
       }
-
-      HAL_Delay(1000);  // Delay 1 giây
- 8000214:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+      HAL_Delay(500);
+ 8000214:	f44f 70fa 	mov.w	r0, #500	; 0x1f4
  8000218:	f000 f962 	bl	80004e0 <HAL_Delay>
-      cnt--;  // Tăng biến đếm sau mỗi lần delay 1 giây
+      cnt--;
  800021c:	683b      	ldr	r3, [r7, #0]
  800021e:	3b01      	subs	r3, #1
  8000220:	603b      	str	r3, [r7, #0]
