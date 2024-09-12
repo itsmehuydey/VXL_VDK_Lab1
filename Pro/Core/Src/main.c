@@ -86,24 +86,96 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-//  int led_sta = 5; // Hoặc giá trị mặc định khác
-//  int cnt = 5;     // Hoặc giá trị mặc định khác
-  /* USER CODE END 2 */
+  int led_sta = 5, led_sta2 = 3;
+  int cnt = 5, cnt2 = 3;
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  LedConfig redLed = {Led_Red_GPIO_Port, Led_Red_Pin};
-	  LedConfig yellowLed = {Led_Yel_GPIO_Port, Led_Yel_Pin};
-	  LedConfig greenLed = {Led_Green_GPIO_Port, Led_Green_Pin};
+	  switch (led_sta) {
+	                case 5:
+	                    HAL_GPIO_WritePin(led1_GPIO_Port, led1_Pin, SET);
+	                    HAL_GPIO_WritePin(led2_GPIO_Port, led2_Pin, RESET);
+	                    HAL_GPIO_WritePin(led3_GPIO_Port, led3_Pin, RESET);
+	                    HAL_GPIO_WritePin(led7_GPIO_Port, led7_Pin, SET);
+	                    HAL_GPIO_WritePin(led8_GPIO_Port, led8_Pin, RESET);
+	                    HAL_GPIO_WritePin(led9_GPIO_Port, led9_Pin, RESET);
+	                    if (cnt<=0){
+	                    led_sta = 3;
+	                  	 cnt =3;
+	                    }
+	                    break;
+	                case 2:
+	              	  HAL_GPIO_WritePin(led1_GPIO_Port, led1_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led2_GPIO_Port, led2_Pin, SET);
+	              	  HAL_GPIO_WritePin(led3_GPIO_Port, led3_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led7_GPIO_Port, led7_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led8_GPIO_Port, led8_Pin, SET);
+	              	  HAL_GPIO_WritePin(led9_GPIO_Port, led9_Pin, RESET);
+	              	  if (cnt<=0){
+	              		led_sta = 5;
+	              	      cnt =5;
+	              	  }
+	              	  break;
+	                case 3:
+	              	  HAL_GPIO_WritePin(led1_GPIO_Port, led1_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led2_GPIO_Port, led2_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led3_GPIO_Port, led3_Pin, SET);
+	              	  HAL_GPIO_WritePin(led7_GPIO_Port, led7_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led8_GPIO_Port, led8_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led9_GPIO_Port, led9_Pin, SET);
+	              	  if (cnt<=0){
+	              		led_sta= 2;
+	              	      cnt =2;
+	              	      }
+	                    break;
+	            }
 
-	  transLed(redLed, yellowLed, greenLed,5,5);
+	            switch (led_sta2) {
+	                case 5:
+	                    HAL_GPIO_WritePin(led4_GPIO_Port, led4_Pin, SET);
+	                    HAL_GPIO_WritePin(led5_GPIO_Port, led5_Pin, RESET);
+	                    HAL_GPIO_WritePin(led6_GPIO_Port, led6_Pin, RESET);
+	                    HAL_GPIO_WritePin(led10_GPIO_Port, led10_Pin, SET);
+	                    HAL_GPIO_WritePin(led11_GPIO_Port, led11_Pin, RESET);
+	                    HAL_GPIO_WritePin(led12_GPIO_Port, led12_Pin, RESET);
+	                    if (cnt2<=0){
+	                    	led_sta2 = 3;
+	                    	cnt2 =3;
+	                    }
+	                    break;
+	                case 2:
+	              	  HAL_GPIO_WritePin(led4_GPIO_Port, led4_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led5_GPIO_Port, led5_Pin, SET);
+	              	  HAL_GPIO_WritePin(led6_GPIO_Port, led6_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led10_GPIO_Port, led10_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led11_GPIO_Port, led11_Pin, SET);
+	              	  HAL_GPIO_WritePin(led12_GPIO_Port, led12_Pin, RESET);
+	              	if (cnt2<=0){
+	              		led_sta2 = 5;
+	              		cnt2 =5;
+	              	}
+	              	  break;
+	                case 3:
+	              	  HAL_GPIO_WritePin(led4_GPIO_Port, led4_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led5_GPIO_Port, led5_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led6_GPIO_Port, led6_Pin, SET);
+	              	  HAL_GPIO_WritePin(led10_GPIO_Port, led10_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led11_GPIO_Port, led11_Pin, RESET);
+	              	  HAL_GPIO_WritePin(led12_GPIO_Port, led12_Pin, SET);
+	              	if (cnt2<=0){
+	              		led_sta2 = 2;
+	              		cnt2 =2;
+	              	}
+	                    break;
+	            }
+	          HAL_Delay(500);
+	          cnt--;
+	          cnt2--;
 
+	      }
     /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-  }
   /* USER CODE END 3 */
 }
 
