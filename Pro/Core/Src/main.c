@@ -63,8 +63,8 @@ void clearNumberOnClock(int num);
 //int c_sec = 2;
 //int c_blink_min = 10;
 //int sw_min = 0;
-int n_sec = 0, n_min = 0, n_hour = 6;
-int c_sec = 2, c_blink_min = 10, sw_min = 0;
+int n_sec = 0, n_min = 0, n_hour = 0;
+int c_blink_min = 10, sw_min = 0;
 /* USER CODE END 0 */
 
 /**
@@ -96,8 +96,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
-
   clearAllClock();
 
   /* USER CODE END 2 */
@@ -106,8 +104,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      if (++c_sec >= 3) {
-          c_sec = 0;
           if (++n_sec >= 60) {
               n_sec = 0;
               if (++n_min >= 60) {
@@ -116,21 +112,16 @@ int main(void)
                   n_hour = (n_hour + 1) % 12;
               }
           }
-      }
-
       if (n_sec % 5 == 0) {
           clearNumberOnClock((n_sec / 5 == 0) ? 11 : (n_sec / 5 - 1));
-          setNumberOnClock(n_sec / 5);
+          setNumberOnClock(n_sec / 5); //seconds
       }
-
-      setNumberOnClock(n_hour);
-
+      setNumberOnClock(n_hour); //hours
       if (--c_blink_min <= 0) {
           sw_min = !sw_min;
-          if (sw_min) setNumberOnClock(n_min / 5);
+          if (sw_min) setNumberOnClock(n_min / 5) ; //minutes
           c_blink_min = 10;
       }
-
       HAL_Delay(10);
   }
     /* USER CODE END 3 */
