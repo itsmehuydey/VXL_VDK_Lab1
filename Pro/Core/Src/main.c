@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "heah1.h"
+#include "bai1.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,22 +94,11 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  switch (led_sta) {
-	  case 1:
-		  HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, SET);
-		  HAL_GPIO_WritePin(Led_Yel_GPIO_Port, Led_Yel_Pin, RESET);
-		  led_sta = 0;
-		  break;
-	  case 0:
-		  HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, RESET);
-		  HAL_GPIO_WritePin(Led_Yel_GPIO_Port, Led_Yel_Pin, SET);
-		  led_sta = 1;
-		  break;
-	  //default:
-		  //
-	  }
-	  HAL_Delay(2000);
+
     /* USER CODE BEGIN 3 */
+	  changeLed(led_sta);
+
+
   }
   /* USER CODE END 3 */
 }
