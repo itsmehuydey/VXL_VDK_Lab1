@@ -5,7 +5,7 @@
  *      Author: pc
  */
 #include "bai10.h"
-int n_sec = 0, n_min = 0, n_hour = 0;
+int n_sec = 0, n_min = 57, n_hour = 0;
 int c_blink_min = 10, sw_min = 0;
 
 void clearAllClock()
@@ -111,24 +111,23 @@ void clearNumberOnClock(int num)
 }
 
 void implement10(){
-	if (++n_sec >= 60) {
-	              n_sec = 0;
-	              if (++n_min >= 60) {
-	                  n_min = 0;
-	                  clearNumberOnClock(n_hour);
-	                  n_hour = (n_hour + 1) % 12;
-	              }
-	          }
-
+		if (++n_sec >= 60) {
+			              n_sec = 0;
+			              if (++n_min >= 60) {
+			                  n_min = 0;
+			                  clearNumberOnClock(n_hour);
+			                  n_hour = (n_hour + 1) % 12;
+			              }
+			          }
 	      if (n_sec % 5 == 0) {
 	          clearNumberOnClock((n_sec / 5 == 0) ? 11 : (n_sec / 5 - 1));
 	          setNumberOnClock(n_sec / 5); //seconds
 	      }
-	      setNumberOnClock(n_hour); //hours
+	      setNumberOnClock(n_hour % 12); //hours
 	      if (--c_blink_min <= 0) {
 	          sw_min = !sw_min;
 	          if (sw_min) setNumberOnClock(n_min / 5) ; //minutes
 	          c_blink_min = 10;
 	      }
-	      HAL_Delay(1000);
+	      HAL_Delay(10);
 }
