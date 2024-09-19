@@ -98,7 +98,7 @@ int main(void)
         display7SEG(counter--);
       if (counter2 <= 0) counter2 = (led_sta2 == 5) ? 5 : (led_sta2 == 2) ? 2 : 3;
         display7SEG_2(counter2--);
-      HAL_Delay(500);
+      HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
