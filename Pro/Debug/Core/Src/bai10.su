@@ -1,4 +1,4 @@
 bai10.c:11:6:clearAllClock	8	static
 bai10.c:27:6:setNumberOnClock	16	static
 bai10.c:70:6:clearNumberOnClock	16	static
-bai10.c:113:6:inple10	8	static
+bai10.c:113:6:implement10	8	static

@@ -110,7 +110,7 @@ void clearNumberOnClock(int num)
 	}
 }
 
-void inple10(){
+void implement10(){
 	if (++n_sec >= 60) {
 	              n_sec = 0;
 	              if (++n_min >= 60) {
@@ -119,6 +119,7 @@ void inple10(){
 	                  n_hour = (n_hour + 1) % 12;
 	              }
 	          }
+
 	      if (n_sec % 5 == 0) {
 	          clearNumberOnClock((n_sec / 5 == 0) ? 11 : (n_sec / 5 - 1));
 	          setNumberOnClock(n_sec / 5); //seconds
@@ -129,5 +130,5 @@ void inple10(){
 	          if (sw_min) setNumberOnClock(n_min / 5) ; //minutes
 	          c_blink_min = 10;
 	      }
-	      HAL_Delay(10);
+	      HAL_Delay(1000);
 }

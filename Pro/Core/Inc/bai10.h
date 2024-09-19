@@ -10,7 +10,7 @@
 #include "main.h"
 extern int n_sec, n_min, n_hour ;
 extern int c_blink_min , sw_min ;
-void inple10();
+void implement10();
 void clearAllClock();
 void setNumberOnClock(int num);
 void clearNumberOnClock(int num);
