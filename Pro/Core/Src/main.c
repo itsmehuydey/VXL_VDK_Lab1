@@ -94,42 +94,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      switch (led_sta) {
-          case 5:  // Đèn đỏ
-              HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, SET);  // Tắt LED xanh
-              HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, RESET);        // Bật LED đỏ
-              HAL_GPIO_WritePin(Led_Yel_GPIO_Port, Led_Yel_Pin, SET);      // Tắt LED vàng
-              if (cnt <= 0) {  // Sau 5 giây
-                  led_sta = 2;  // Chuyển sang đèn vàng
-                  cnt = 2;      // Reset biến đế
-              }
-              break;
-
-
-          case 2:  // Đèn vàng
-              HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, SET);      // Tắt LED đỏ
-              HAL_GPIO_WritePin(Led_Yel_GPIO_Port, Led_Yel_Pin, RESET);        // Bật LED vàng
-              HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, SET);  // Tắt
-              if (cnt <= 0) {  // Sau 2 giây
-                  led_sta = 3;  // Chuyển sang đèn xanh
-                  cnt = 3;      // Reset biến đếm
-              }
-              break;
-
-          case 3:  // Đèn xanh
-              HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, SET);
-              HAL_GPIO_WritePin(Led_Yel_GPIO_Port, Led_Yel_Pin, SET);
-              HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, RESET);
-              if (cnt <= 0) {
-                  cnt = 5;
-                  led_sta = 5;
-              }
-              break;
-
-          //default:
-      }
-      HAL_Delay(500);
-      cnt--;
+	  cnt = trafficlight(cnt, &led_sta);
       /* USER CODE END WHILE */
   }
 	    /* USER CODE END 3 */
