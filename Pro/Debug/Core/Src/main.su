@@ -1,8 +1,4 @@
-lab1header.h:20:6:transLed1	32	static
-lab1header.h:65:6:transLed2	32	static
-lab1header.h:110:6:transLed3	32	static
-lab1header.h:155:6:transLed4	32	static
-main.c:64:5:main	24	static
-main.c:186:6:SystemClock_Config	72	static
-main.c:222:13:MX_GPIO_Init	32	static
-main.c:272:6:Error_Handler	4	static,ignoring_inline_asm
+main.c:64:5:main	8	static
+main.c:109:6:SystemClock_Config	72	static
+main.c:145:13:MX_GPIO_Init	32	static
+main.c:195:6:Error_Handler	4	static,ignoring_inline_asm
