@@ -96,7 +96,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  changeLed(led_sta);
+	  led_sta = changeLed(led_sta);
+	  HAL_Delay(2000);
+	  //HAL_Delay(2000);
 
 
   }
