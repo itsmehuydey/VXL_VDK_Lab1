@@ -27,7 +27,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+#include "bai2.h"
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -94,7 +94,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  cnt = trafficlight(cnt, &led_sta);
+	  cnt = traffic_light(&cnt, &led_sta);
       /* USER CODE END WHILE */
   }
 	    /* USER CODE END 3 */
