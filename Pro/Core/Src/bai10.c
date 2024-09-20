@@ -5,7 +5,7 @@
  *      Author: pc
  */
 #include "bai10.h"
-int second = 0, minute = 28, hour = 7;
+int second = 0, minute = 0, hour = 0;
 int cnt = 10, statue = 0;
 
 void clearAllClock()
@@ -115,9 +115,10 @@ void implement10(){
 			              second = 0;
 			              if (++minute >= 60) {
 			                  minute = 0;
+			                  //if(hour>=24) { hour = 0;
 			                  clearNumberOnClock(hour);
 			                  hour = (hour + 1) % 12;
-			              }
+			                  }
 			          }
 	      if (second % 5 == 0) {
 	          clearNumberOnClock((second / 5 == 0) ? 11 : (second / 5 - 1));
@@ -129,5 +130,5 @@ void implement10(){
 	          if (statue) setNumberOnClock(minute / 5) ; //minutes
 	          cnt = 10;
 	      }
-	      HAL_Delay(10);
+	      HAL_Delay(1000);
 }
