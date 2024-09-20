@@ -5,7 +5,7 @@
  *      Author: pc
  */
 #include "bai10.h"
-int n_sec = 0, n_min = 57, n_hour = 0;
+int n_sec = 0, n_min = 0, n_hour = 0;
 int c_blink_min = 10, sw_min = 0;
 
 void clearAllClock()
