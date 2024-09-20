@@ -102,23 +102,23 @@ int main(void)
   }
   void setNumberOnClock(int num) {
 	  switch (num) {
-	          case 0: HAL_GPIO_WritePin(c1_GPIO_Port, c1_Pin, SET); break;
-	          case 1: HAL_GPIO_WritePin(c2_GPIO_Port, c2_Pin, SET); break;
-	          case 2: HAL_GPIO_WritePin(c3_GPIO_Port, c3_Pin, SET); break;
-	          case 3: HAL_GPIO_WritePin(c4_GPIO_Port, c4_Pin, SET); break;
-	          case 4: HAL_GPIO_WritePin(c5_GPIO_Port, c5_Pin, SET); break;
-	          case 5: HAL_GPIO_WritePin(c6_GPIO_Port, c6_Pin, SET); break;
-	          case 6: HAL_GPIO_WritePin(c7_GPIO_Port, c7_Pin, SET); break;
-	          case 7: HAL_GPIO_WritePin(c8_GPIO_Port, c8_Pin, SET); break;
-	          case 8: HAL_GPIO_WritePin(c9_GPIO_Port, c9_Pin, SET); break;
-	          case 9: HAL_GPIO_WritePin(c10_GPIO_Port, c10_Pin, SET); break;
-	          case 10: HAL_GPIO_WritePin(c11_GPIO_Port, c11_Pin, SET); break;
-	          case 11: HAL_GPIO_WritePin(c12_GPIO_Port, c12_Pin, SET); break;
+	          case 0: HAL_GPIO_TogglePin(c1_GPIO_Port, c1_Pin); break;
+	          case 1: HAL_GPIO_TogglePin(c2_GPIO_Port, c2_Pin); break;
+	          case 2: HAL_GPIO_TogglePin(c3_GPIO_Port, c3_Pin); break;
+	          case 3: HAL_GPIO_TogglePin(c4_GPIO_Port, c4_Pin); break;
+	          case 4: HAL_GPIO_TogglePin(c5_GPIO_Port, c5_Pin); break;
+	          case 5: HAL_GPIO_TogglePin(c6_GPIO_Port, c6_Pin); break;
+	          case 6: HAL_GPIO_TogglePin(c7_GPIO_Port, c7_Pin); break;
+	          case 7: HAL_GPIO_TogglePin(c8_GPIO_Port, c8_Pin); break;
+	          case 8: HAL_GPIO_TogglePin(c9_GPIO_Port, c9_Pin); break;
+	          case 9: HAL_GPIO_TogglePin(c10_GPIO_Port, c10_Pin); break;
+	          case 10: HAL_GPIO_TogglePin(c11_GPIO_Port, c11_Pin); break;
+	          case 11: HAL_GPIO_TogglePin(c12_GPIO_Port, c12_Pin); break;
 	          default: break;  // If the number is invalid, do nothing
       }
   }
   clearAllClock();
-  int currentLED = 0;
+  int currentLED = -1;
   //, minute = 0, hour = 0;
   /* USER CODE END 2 */
 
@@ -126,10 +126,12 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if (currentLED > 12)  currentLED = 0;
 	  setNumberOnClock(currentLED);
-	  HAL_Delay(100);
+	  if (currentLED== 11)  currentLED = -1;
+	  setNumberOnClock(currentLED+1);
+
 	  currentLED++;
+	  HAL_Delay(100);
     /* USER CODE BEGIN 3 */
   /* USER CODE END 3 */
 }
