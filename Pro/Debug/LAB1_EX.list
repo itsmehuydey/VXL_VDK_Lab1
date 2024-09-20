@@ -9,41 +9,41 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   2 .rodata       00000024  08001538  08001538  00011538  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  0800155c  0800155c  00020010  2**0
+  3 .ARM.extab    00000000  0800155c  0800155c  00020018  2**0
                   CONTENTS
-  4 .ARM          00000000  0800155c  0800155c  00020010  2**0
+  4 .ARM          00000000  0800155c  0800155c  00020018  2**0
                   CONTENTS
-  5 .preinit_array 00000000  0800155c  0800155c  00020010  2**0
+  5 .preinit_array 00000000  0800155c  0800155c  00020018  2**0
                   CONTENTS, ALLOC, LOAD, DATA
   6 .init_array   00000004  0800155c  0800155c  0001155c  2**2
                   CONTENTS, ALLOC, LOAD, DATA
   7 .fini_array   00000004  08001560  08001560  00011560  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000010  20000000  08001564  00020000  2**2
+  8 .data         00000018  20000000  08001564  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000030  20000010  08001574  00020010  2**2
+  9 .bss          00000028  20000018  0800157c  00020018  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000040  08001574  00020040  2**0
+ 10 ._user_heap_stack 00000600  20000040  0800157c  00020040  2**0
                   ALLOC
- 11 .ARM.attributes 00000029  00000000  00000000  00020010  2**0
+ 11 .ARM.attributes 00000029  00000000  00000000  00020018  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00003306  00000000  00000000  00020039  2**0
+ 12 .debug_info   0000331a  00000000  00000000  00020041  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00000f9e  00000000  00000000  0002333f  2**0
+ 13 .debug_abbrev 00000fb5  00000000  00000000  0002335b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000408  00000000  00000000  000242e0  2**3
+ 14 .debug_aranges 00000408  00000000  00000000  00024310  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00000370  00000000  00000000  000246e8  2**3
+ 15 .debug_ranges 00000370  00000000  00000000  00024718  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00015775  00000000  00000000  00024a58  2**0
+ 16 .debug_macro  00015775  00000000  00000000  00024a88  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00004c4e  00000000  00000000  0003a1cd  2**0
+ 17 .debug_line   00004c50  00000000  00000000  0003a1fd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00079a4b  00000000  00000000  0003ee1b  2**0
+ 18 .debug_str    00079a60  00000000  00000000  0003ee4d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000b8866  2**0
+ 19 .comment      00000053  00000000  00000000  000b88ad  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00000dbc  00000000  00000000  000b88bc  2**2
+ 20 .debug_frame  00000dbc  00000000  00000000  000b8900  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -60,7 +60,7 @@ Disassembly of section .text:
  800011e:	2301      	movs	r3, #1
  8000120:	7023      	strb	r3, [r4, #0]
  8000122:	bd10      	pop	{r4, pc}
- 8000124:	20000010 	.word	0x20000010
+ 8000124:	20000018 	.word	0x20000018
  8000128:	00000000 	.word	0x00000000
  800012c:	08001520 	.word	0x08001520
 
@@ -73,13 +73,13 @@ Disassembly of section .text:
  800013a:	f3af 8000 	nop.w
  800013e:	bd08      	pop	{r3, pc}
  8000140:	00000000 	.word	0x00000000
- 8000144:	20000014 	.word	0x20000014
+ 8000144:	2000001c 	.word	0x2000001c
  8000148:	08001520 	.word	0x08001520
 
 0800014c <clearAllClock>:
 #include "bai10.h"
-int n_sec = 0, n_min = 0, n_hour = 0;
-int c_blink_min = 10, sw_min = 0;
+int second = 0, minute = 28, hour = 7;
+int cnt = 10, statue = 0;
 
 void clearAllClock()
 {
@@ -417,7 +417,7 @@ void clearNumberOnClock(int num)
 void implement10(){
  80003c0:	b580      	push	{r7, lr}
  80003c2:	af00      	add	r7, sp, #0
-		if (++n_sec >= 60) {
+		if (++second >= 60) {
  80003c4:	4b49      	ldr	r3, [pc, #292]	; (80004ec <implement10+0x12c>)
  80003c6:	681b      	ldr	r3, [r3, #0]
  80003c8:	3301      	adds	r3, #1
@@ -427,11 +427,11 @@ void implement10(){
  80003d0:	681b      	ldr	r3, [r3, #0]
  80003d2:	2b3b      	cmp	r3, #59	; 0x3b
  80003d4:	dd23      	ble.n	800041e <implement10+0x5e>
-			              n_sec = 0;
+			              second = 0;
  80003d6:	4b45      	ldr	r3, [pc, #276]	; (80004ec <implement10+0x12c>)
  80003d8:	2200      	movs	r2, #0
  80003da:	601a      	str	r2, [r3, #0]
-			              if (++n_min >= 60) {
+			              if (++minute >= 60) {
  80003dc:	4b44      	ldr	r3, [pc, #272]	; (80004f0 <implement10+0x130>)
  80003de:	681b      	ldr	r3, [r3, #0]
  80003e0:	3301      	adds	r3, #1
@@ -441,16 +441,16 @@ void implement10(){
  80003e8:	681b      	ldr	r3, [r3, #0]
  80003ea:	2b3b      	cmp	r3, #59	; 0x3b
  80003ec:	dd17      	ble.n	800041e <implement10+0x5e>
-			                  n_min = 0;
+			                  minute = 0;
  80003ee:	4b40      	ldr	r3, [pc, #256]	; (80004f0 <implement10+0x130>)
  80003f0:	2200      	movs	r2, #0
  80003f2:	601a      	str	r2, [r3, #0]
-			                  clearNumberOnClock(n_hour);
+			                  clearNumberOnClock(hour);
  80003f4:	4b3f      	ldr	r3, [pc, #252]	; (80004f4 <implement10+0x134>)
  80003f6:	681b      	ldr	r3, [r3, #0]
  80003f8:	4618      	mov	r0, r3
  80003fa:	f7ff ff69 	bl	80002d0 <clearNumberOnClock>
-			                  n_hour = (n_hour + 1) % 12;
+			                  hour = (hour + 1) % 12;
  80003fe:	4b3d      	ldr	r3, [pc, #244]	; (80004f4 <implement10+0x134>)
  8000400:	681b      	ldr	r3, [r3, #0]
  8000402:	1c59      	adds	r1, r3, #1
@@ -468,7 +468,7 @@ void implement10(){
  800041c:	601a      	str	r2, [r3, #0]
 			              }
 			          }
-	      if (n_sec % 5 == 0) {
+	      if (second % 5 == 0) {
  800041e:	4b33      	ldr	r3, [pc, #204]	; (80004ec <implement10+0x12c>)
  8000420:	6819      	ldr	r1, [r3, #0]
  8000422:	4b36      	ldr	r3, [pc, #216]	; (80004fc <implement10+0x13c>)
@@ -482,7 +482,7 @@ void implement10(){
  8000434:	1aca      	subs	r2, r1, r3
  8000436:	2a00      	cmp	r2, #0
  8000438:	d11d      	bne.n	8000476 <implement10+0xb6>
-	          clearNumberOnClock((n_sec / 5 == 0) ? 11 : (n_sec / 5 - 1));
+	          clearNumberOnClock((second / 5 == 0) ? 11 : (second / 5 - 1));
  800043a:	4b2c      	ldr	r3, [pc, #176]	; (80004ec <implement10+0x12c>)
  800043c:	681b      	ldr	r3, [r3, #0]
  800043e:	3304      	adds	r3, #4
@@ -500,7 +500,7 @@ void implement10(){
  8000458:	230b      	movs	r3, #11
  800045a:	4618      	mov	r0, r3
  800045c:	f7ff ff38 	bl	80002d0 <clearNumberOnClock>
-	          setNumberOnClock(n_sec / 5); //seconds
+	          setNumberOnClock(second / 5); //seconds
  8000460:	4b22      	ldr	r3, [pc, #136]	; (80004ec <implement10+0x12c>)
  8000462:	681b      	ldr	r3, [r3, #0]
  8000464:	4a25      	ldr	r2, [pc, #148]	; (80004fc <implement10+0x13c>)
@@ -511,7 +511,7 @@ void implement10(){
  8000470:	4618      	mov	r0, r3
  8000472:	f7ff feb5 	bl	80001e0 <setNumberOnClock>
 	      }
-	      setNumberOnClock(n_hour % 12); //hours
+	      setNumberOnClock(hour % 12); //hours
  8000476:	4b1f      	ldr	r3, [pc, #124]	; (80004f4 <implement10+0x134>)
  8000478:	681a      	ldr	r2, [r3, #0]
  800047a:	4b1f      	ldr	r3, [pc, #124]	; (80004f8 <implement10+0x138>)
@@ -526,7 +526,7 @@ void implement10(){
  800048e:	1ad1      	subs	r1, r2, r3
  8000490:	4608      	mov	r0, r1
  8000492:	f7ff fea5 	bl	80001e0 <setNumberOnClock>
-	      if (--c_blink_min <= 0) {
+	      if (--cnt <= 0) {
  8000496:	4b1a      	ldr	r3, [pc, #104]	; (8000500 <implement10+0x140>)
  8000498:	681b      	ldr	r3, [r3, #0]
  800049a:	3b01      	subs	r3, #1
@@ -536,7 +536,7 @@ void implement10(){
  80004a2:	681b      	ldr	r3, [r3, #0]
  80004a4:	2b00      	cmp	r3, #0
  80004a6:	dc1b      	bgt.n	80004e0 <implement10+0x120>
-	          sw_min = !sw_min;
+	          statue = !statue;
  80004a8:	4b16      	ldr	r3, [pc, #88]	; (8000504 <implement10+0x144>)
  80004aa:	681b      	ldr	r3, [r3, #0]
  80004ac:	2b00      	cmp	r3, #0
@@ -547,7 +547,7 @@ void implement10(){
  80004b6:	461a      	mov	r2, r3
  80004b8:	4b12      	ldr	r3, [pc, #72]	; (8000504 <implement10+0x144>)
  80004ba:	601a      	str	r2, [r3, #0]
-	          if (sw_min) setNumberOnClock(n_min / 5) ; //minutes
+	          if (statue) setNumberOnClock(minute / 5) ; //minutes
  80004bc:	4b11      	ldr	r3, [pc, #68]	; (8000504 <implement10+0x144>)
  80004be:	681b      	ldr	r3, [r3, #0]
  80004c0:	2b00      	cmp	r3, #0
@@ -561,7 +561,7 @@ void implement10(){
  80004d2:	1ad3      	subs	r3, r2, r3
  80004d4:	4618      	mov	r0, r3
  80004d6:	f7ff fe83 	bl	80001e0 <setNumberOnClock>
-	          c_blink_min = 10;
+	          cnt = 10;
  80004da:	4b09      	ldr	r3, [pc, #36]	; (8000500 <implement10+0x140>)
  80004dc:	220a      	movs	r2, #10
  80004de:	601a      	str	r2, [r3, #0]
@@ -573,12 +573,12 @@ void implement10(){
  80004e6:	bf00      	nop
  80004e8:	bd80      	pop	{r7, pc}
  80004ea:	bf00      	nop
- 80004ec:	2000002c 	.word	0x2000002c
- 80004f0:	20000030 	.word	0x20000030
- 80004f4:	20000034 	.word	0x20000034
+ 80004ec:	20000034 	.word	0x20000034
+ 80004f0:	20000000 	.word	0x20000000
+ 80004f4:	20000004 	.word	0x20000004
  80004f8:	2aaaaaab 	.word	0x2aaaaaab
  80004fc:	66666667 	.word	0x66666667
- 8000500:	20000000 	.word	0x20000000
+ 8000500:	20000008 	.word	0x20000008
  8000504:	20000038 	.word	0x20000038
 
 08000508 <main>:
@@ -1130,11 +1130,11 @@ LoopFillZerobss:
   ldr r0, =_sdata
  8000700:	20000000 	.word	0x20000000
   ldr r1, =_edata
- 8000704:	20000010 	.word	0x20000010
+ 8000704:	20000018 	.word	0x20000018
   ldr r2, =_sidata
  8000708:	08001564 	.word	0x08001564
   ldr r2, =_sbss
- 800070c:	20000010 	.word	0x20000010
+ 800070c:	20000018 	.word	0x20000018
   ldr r4, =_ebss
  8000710:	20000040 	.word	0x20000040
 
@@ -1256,9 +1256,9 @@ __weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
  8000792:	3708      	adds	r7, #8
  8000794:	46bd      	mov	sp, r7
  8000796:	bd80      	pop	{r7, pc}
- 8000798:	20000004 	.word	0x20000004
- 800079c:	2000000c 	.word	0x2000000c
- 80007a0:	20000008 	.word	0x20000008
+ 8000798:	2000000c 	.word	0x2000000c
+ 800079c:	20000014 	.word	0x20000014
+ 80007a0:	20000010 	.word	0x20000010
 
 080007a4 <HAL_IncTick>:
   * @note This function is declared as __weak to be overwritten in case of other
@@ -1283,7 +1283,7 @@ __weak void HAL_IncTick(void)
  80007ba:	46bd      	mov	sp, r7
  80007bc:	bc80      	pop	{r7}
  80007be:	4770      	bx	lr
- 80007c0:	2000000c 	.word	0x2000000c
+ 80007c0:	20000014 	.word	0x20000014
  80007c4:	2000003c 	.word	0x2000003c
 
 080007c8 <HAL_GetTick>:
@@ -1356,7 +1356,7 @@ __weak void HAL_Delay(uint32_t Delay)
  800081a:	46bd      	mov	sp, r7
  800081c:	bd80      	pop	{r7, pc}
  800081e:	bf00      	nop
- 8000820:	2000000c 	.word	0x2000000c
+ 8000820:	20000014 	.word	0x20000014
 
 08000824 <__NVIC_SetPriorityGrouping>:
            In case of a conflict between priority grouping and available
@@ -3429,8 +3429,8 @@ if (((RCC_ClkInitStruct->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK
  80013d0:	40022000 	.word	0x40022000
  80013d4:	40021000 	.word	0x40021000
  80013d8:	08001538 	.word	0x08001538
- 80013dc:	20000004 	.word	0x20000004
- 80013e0:	20000008 	.word	0x20000008
+ 80013dc:	2000000c 	.word	0x2000000c
+ 80013e0:	20000010 	.word	0x20000010
 
 080013e4 <HAL_RCC_GetSysClockFreq>:
   *         right SYSCLK value. Otherwise, any configuration based on this function will be incorrect.
@@ -3605,7 +3605,7 @@ static void RCC_Delay(uint32_t mdelay)
  80014ba:	46bd      	mov	sp, r7
  80014bc:	bc80      	pop	{r7}
  80014be:	4770      	bx	lr
- 80014c0:	20000004 	.word	0x20000004
+ 80014c0:	2000000c 	.word	0x2000000c
  80014c4:	10624dd3 	.word	0x10624dd3
 
 080014c8 <__libc_init_array>:
