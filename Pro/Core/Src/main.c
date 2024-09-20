@@ -94,9 +94,9 @@ int main(void)
   {
     /* USER CODE END WHILE */
       traffic_2dimen();
-      if (counter <= 0) counter = (led_sta == 5) ? 5 : (led_sta == 2) ? 2 : 3;
+      if (counter < 0) counter = (led_sta == 5) ? 4 : (led_sta == 2) ? 1 : 2;
         display7SEG(counter--);
-      if (counter2 <= 0) counter2 = (led_sta2 == 5) ? 5 : (led_sta2 == 2) ? 2 : 3;
+      if (counter2 < 0) counter2 = (led_sta2 == 5) ? 4 : (led_sta2 == 2) ? 1 : 2;
         display7SEG_2(counter2--);
       HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
